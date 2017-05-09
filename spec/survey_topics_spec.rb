@@ -10,15 +10,19 @@ describe(SurveyTopic) do
 
   describe('#topic') do
     it("will return the topic of the survey") do
-      survey_topic = SurveyTopic.create({:topic => "Healthcare"})
+      survey_topic = SurveyTopic.create({:topic => "healthcare"})
       expect(survey_topic.topic).to(eq("Healthcare"))
     end
   end
 
-    it("capitalizes the first letter of every word in survey title") do
-      survey_topic = SurveyTopic.new({:topic => "Health care"})
-      expect(survey_topic.topic).to(eq("Health Care"))
+  describe('#capitalize_title') do
+    it('will capitalize each word in the title') do
+      survey1 = SurveyTopic.new({:topic => 'health care'})
+      survey1.capitalize_title
+      expect(survey1.topic).to eq ('Health Care')
     end
+  end
 
-    
+
+
 end

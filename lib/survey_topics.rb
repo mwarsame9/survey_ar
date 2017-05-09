@@ -1,11 +1,14 @@
 class SurveyTopic < ActiveRecord::Base
   has_many(:questions)
-  before_save(:capitalize_every_word)
+  before_save(:capitalize_title)
 
-private
+# private
 
-  define_method(:capitalize_every_word) do
-    self.split(' ').map {|w| w.capitalize }.join(' ')
+  def capitalize_title
+    topic_array = topic.split()
+    topic_array.each do |w|
+      w.capitalize!
+    end
+    self.topic = topic_array.join(' ')
   end
-
 end
