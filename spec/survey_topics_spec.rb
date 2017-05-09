@@ -14,4 +14,11 @@ describe(SurveyTopic) do
       expect(survey_topic.topic).to(eq("Healthcare"))
     end
   end
+
+    it("capitalizes the first letter of every word in survey title") do
+      survey_topic = SurveyTopic.new({:topic => "Health care"})
+      expect(survey_topic.topic).to(eq("Health Care"))
+    end
+
+    
 end
