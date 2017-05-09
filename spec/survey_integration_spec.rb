@@ -26,7 +26,7 @@ describe("the survey path", {:type => :feature}) do
     expect(page).to have_content("Here are all your surveys")
   end
 
-  it("allows a user to rename or delete a survey") do
+  it("allows a user to rename a survey") do
     visit("/")
     fill_in("survey_topic", :with => "test survey topic")
     click_button("Submit")
@@ -36,5 +36,16 @@ describe("the survey path", {:type => :feature}) do
     fill_in("update_survey_topic", :with => "Renamed Survey Topic")
     click_button("Update")
     expect(page).to have_content("Renamed Survey Topic")
+  end
+
+  it("allows a user to delete a survey") do
+    visit("/")
+    fill_in("survey_topic", :with => "test survey topic")
+    click_button("Submit")
+    expect(page).to have_content("Test Survey Topic")
+    click_link("Test Survey Topic")
+    expect(page).to have_content("Add question")
+    click_button("Delete Survey")
+    expect(page).to have_content("Here are all your surveys")
   end
 end

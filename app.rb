@@ -41,3 +41,17 @@ patch('/update_survey_topics/:id') do
   @survey_topic.update({:topic => name})
   erb(:survey_topic)
 end
+
+delete('/delete_survey_topics/:id') do
+  @survey_topic = SurveyTopic.find(params.fetch("id").to_i())
+  @survey_topic.delete
+  @questions = Question.all()
+  @questions.each do |question|
+    if question.survey_topic_id == @survey_topic.id
+      question.delete
+    end
+  end
+  @survey_topics = SurveyTopic.all
+  @questions = Question.all
+  erb(:index)
+end
