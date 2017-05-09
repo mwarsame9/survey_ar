@@ -22,3 +22,19 @@
     <p>There are no questions in this survey!</p>
   <% end %>
 <hr>
+
+<hr>
+  <h1>Update <%=@survey_topic.topic() %> </h1>
+
+  <form action="/update_survey_topics/<%= @survey_topic.id() %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="update_survey_topic">Rename your survey:</label>
+    <input id="update_survey_topic" name="update_survey_topic" type="text">
+
+    <button type="submit">Update</button>
+  </form>
+
+  <!-- <form action="/update_survey_topics/<%= @survey_topic.id %>" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Survey</button>
+  </form> -->

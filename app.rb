@@ -34,3 +34,10 @@ post('/questions') do
   @questions = Question.all
   erb(:index)
 end
+
+patch('/update_survey_topics/:id') do
+  @survey_topic = SurveyTopic.find(params.fetch("id").to_i())
+  name = params.fetch("update_survey_topic")
+  @survey_topic.update({:topic => name})
+  erb(:survey_topic)
+end
