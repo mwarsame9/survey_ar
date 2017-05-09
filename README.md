@@ -7,7 +7,7 @@
 Web browser with ES6 compatibility
 Examples: Chrome, Safari
 
-Ruby <!--VERSION HERE-->
+Ruby 2.3.1
 Bundler
 
 ### Installing

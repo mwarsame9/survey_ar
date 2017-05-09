@@ -8,5 +8,19 @@ require('pg')
 require('pry')
 
 get('/') do
+  @survey_topics = SurveyTopic.all
   erb(:index)
+end
+
+post('/survey_topics') do
+  name = params.fetch("survey_topic")
+  @survey_topic = SurveyTopic.new({:topic => name, :id => nil})
+  @survey_topic.save()
+  @survey_topics = SurveyTopic.all
+  erb(:index)
+end
+
+get('/survey_topics/:id') do
+  @survey_topic = SurveyTopic.find(params.fetch("id").to_i())
+  erb(:survey_topic)
 end

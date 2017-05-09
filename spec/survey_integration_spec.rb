@@ -1,17 +1,15 @@
-# require "capybara/rspec"
-# require "./app"
-#
-# Capybara.app = Sinatra::Application
-# set(:show_exceptions, false)
+require "capybara/rspec"
+require "./app"
+require "pg"
 
-# example integration test
+Capybara.app = Sinatra::Application
+set(:show_exceptions, false)
 
-# describe("the phrase parser path", {:type => :feature}) do
-#   it("processes the user input and returns correct message if its a palindrome") do
-#     visit("/")
-#     fill_in("phrase1", :with => "madam")
-#     fill_in("phrase2", :with => "anagram")
-#     click_button("what am i?")
-#     expect(page).to have_content("'madam' is a palindrome")
-#   end
-# end
+describe("the survey path", {:type => :feature}) do
+  it("processes the user input and returns a capitalized topic for survey") do
+    visit("/")
+    fill_in("survey_topic", :with => "health care")
+    click_button("Submit")
+    expect(page).to have_content("Health Care")
+  end
+end
