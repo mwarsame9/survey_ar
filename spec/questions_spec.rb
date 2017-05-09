@@ -16,16 +16,21 @@ describe(Question) do
       expect(question.question).to(eq("How old are you?"))
     end
   end
+
+
+    it("validates presence of question") do
+      question = Question.new({:question => ""})
+      expect(question.save()).to(eq(false))
+    end
+
+    it("ensures the length of question is at least 10 characters") do
+      question = Question.new({:question => "a".*(9)})
+      expect(question.save()).to(eq(false))
+    end
+
+    it("ensures the length of question is at most 150 characters") do
+      question = Question.new({:question => "a".*(151)})
+      expect(question.save()).to(eq(false))
+    end
+
 end
-
-
-  # it("validates presence of description") do
-  #   task = Task.new({:description => ""})
-  #   expect(task.save()).to(eq(false))
-  # end
-  #
-  #
-  # it("ensures the length of description is at most 50 characters") do
-  #   task = Task.new({:description => "a".*(51)})
-  #   expect(task.save()).to(eq(false))
-  # end
