@@ -4,7 +4,7 @@
 
 <ul>
   <% @survey_topics.each do |survey_topic| %>
-    <li><a href="/survey_topics<%= survey_topic.id() %>"><%= survey_topic.topic() %></a></li>
+    <li><a href="/survey_topics/<%= survey_topic.id() %>"><%= survey_topic.topic() %></a></li>
   <% end %>
 </ul>
 

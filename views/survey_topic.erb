@@ -1,5 +1,24 @@
-<%= # sample output html
-# <h2><%= @message %></h2>
-# <hr>
-# <a href="/" class="btn btn-danger">reset</a>
-%>
+<h1><%= @survey_topic.topic() %></h1>
+
+<form action="/questions" method="post">
+  <input id="survey_topic_id" name="survey_topic_id" type="hidden" value="<%= @survey_topic.id() %>">
+
+  <label for="question">Question:</label>
+  <input id="question" name="question" type="text">
+
+  <button type="submit">Add question</button>
+</form>
+<hr>
+<% if @survey_topic.questions().any?() %>
+  <h3>Here are all the questions in this survey:</h3>
+
+  <ul>
+    <% @survey_topic.questions().each() do |question| %>
+      <li><%= question.question() %> </li>
+    <% end %>
+  </ul>
+
+  <% else %>
+    <p>There are no questions in this survey!</p>
+  <% end %>
+<hr>

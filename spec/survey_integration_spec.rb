@@ -12,4 +12,18 @@ describe("the survey path", {:type => :feature}) do
     click_button("Submit")
     expect(page).to have_content("Health Care")
   end
+
+
+  it("processes the user input to add questions to the survey") do
+    visit("/")
+    fill_in("survey_topic", :with => "test survey topic")
+    click_button("Submit")
+    expect(page).to have_content("Test Survey Topic")
+    click_link("Test Survey Topic")
+    expect(page).to have_content("Add question")
+    fill_in("question", :with => "How old are you?")
+    click_button("Add question")
+    expect(page).to have_content("Here are all your surveys")
+  end
+
 end

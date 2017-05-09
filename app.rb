@@ -24,3 +24,13 @@ get('/survey_topics/:id') do
   @survey_topic = SurveyTopic.find(params.fetch("id").to_i())
   erb(:survey_topic)
 end
+
+post('/questions') do
+  name = params.fetch("question")
+  @survey_topic = SurveyTopic.find(params.fetch("survey_topic_id"))
+  @question = Question.new({:question => name, :id => nil, :survey_topic_id => @survey_topic.id})
+  @question.save()
+  @survey_topics = SurveyTopic.all
+  @questions = Question.all
+  erb(:index)
+end
